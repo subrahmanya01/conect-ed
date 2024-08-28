@@ -1,0 +1,36 @@
+
+<div class="container mt-4">
+    <div class="mb-3 form-group search-box">
+        <input type="search" class="form-control" id="exampleFormControlInput1" #keyword placeholder="Search..." (input)="search(keyword.value)">
+    </div>
+
+    <div class="text-center" *ngIf="searchKeyword.length >0">
+        <h6>Searching for <span style="color: red;">{{searchKeyword}}</span></h6>
+    </div>
+
+    <div class="main-card mt-4" *ngFor="let question of questions.reverse()">
+        <div class="card-header">
+            <a routerLink="/answer/{{question._id}}">{{question.title}}</a>
+        </div>
+        <div class="btn-group delete-btn" role="group" *ngIf="question.createdBy._id == userService.getUserId()">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              More
+            </button>
+            <ul class="dropdown-menu">
+              <li style="padding: 10px 10px; cursor: pointer;" (click)="deleteQuestion(question._id)">Delete</li>
+              <li style="padding: 10px 10px; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="onEditClick(question)">Edit</li>
+            </ul>
+          </div>
+        <div class="card-desc">
+            {{question.content}}
+        </div>
+        <div class="card-tags mt-2">
+            <span class="badge text-bg-primary" style="display: inline-block; margin-left: 10px;" *ngFor="let tag of question.tags">{{tag}}</span>
+        </div>
+        <div class="card-user" style="height: 23px;">
+            <div style="float: right;"><a routerLink="profile/{{question.createdBy._id}}" style="font-weight: 600;">{{question.createdBy.firstName + " " + question.createdBy.lastName}}</a> {{question.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+        </div>
+    </div>
+</div>
+
+<app-ask-question [isEdit]="doEdit" [data]="currentlyEditing" (modalClosed)="onPopupClose()"></app-ask-question>

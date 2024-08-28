@@ -1,0 +1,150 @@
+.user-list
+{
+    height: 90vh;
+    overflow-y: scroll;
+    border-right: 2px solid rgb(227, 227, 227);
+}
+
+.chats
+{
+    height: 90vh;
+    border-radius: 0.5rem;
+}
+
+.user-pallet
+{
+    padding: 5px;
+    overflow: hidden;
+    box-shadow: 0px 0px 8px rgb(212, 212, 212);
+}
+
+.user-pallet * .user-profile-icon
+{
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.active
+{
+    font-weight: 900;
+}
+
+.user-pallet * .user-name
+{
+    cursor: pointer;
+    font-size: 1em;
+}
+.user-pallet * .user-name:hover
+{
+    font-weight: 600;
+}
+
+.user-pallet * .online
+{
+    font-weight: 900;
+    color: green;
+    float: right;
+    font-size: 0.7rem;
+    position: relative;
+    top:7px;
+}
+
+.chats
+{
+    position: relative;
+}
+.chats > .user-chats
+{
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.chats > .user-chats > .parent-div
+{
+    position: relative;
+    display: block;
+    height: 3em;
+}
+.chats > .user-chats * .chat-from
+{
+    position: absolute;
+    left:0px;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: .8em .8em .8em 0em;
+}
+.chats > .user-chats * .chat-to
+{
+    position: absolute;
+    right:0px;
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: .8em .8em 0em .8em;
+}
+
+.chats > .user-chats * .time
+{
+    font-size: .5em;
+}
+.chats > .current-user-header
+{
+    box-shadow: 0px 0px 5px blue;
+    height: 3em;
+    border-radius: 1em;
+}
+
+.place-message-box{
+    position: absolute;
+    bottom: 0px;
+    border: 1px solid black;
+    width: 100%;
+}
+.message-box
+{
+    position: relative;
+    border: 1px solid red;
+    height: 40px;
+}
+.send-icon
+{
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top:0px;
+    cursor: pointer;
+    background-color: black;
+    padding: 8px;
+}
+
+@media only screen and (max-width: 700px) {
+    
+    .user-pallet * .user-profile-icon
+    {
+        display: block;
+        width: 1em;
+        height: 1em;
+        margin: auto;
+    }
+
+    .user-pallet * .user-name
+    {
+        color:black;
+        cursor: pointer;
+        font-size: .6em;
+        display: block;
+        text-align: center;
+    }
+   
+  }
+
+  .no-user-selected
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+  }

@@ -1,0 +1,28 @@
+<div class="login-box">
+    <div class="container login" style="width:30rem;">
+      <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <h1 style="text-align: center;">Login</h1>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="name@example.com" formControlName="email">
+            <div class="error" *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched">
+                Email required
+              </div> 
+              <div class="error" *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched">
+                Please provide valid email
+              </div> 
+        </div>
+        <label for="inputPassword5" class="form-label">Password</label>
+        <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" formControlName="password">
+        <div class="error" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+            Password required*
+        </div> 
+
+        <button class="btn btn-primary" style="width: 100%; margin-top: 10px;" [disabled]="!loginForm.valid">Login</button>
+        <div class="dont-have-account text-center mt-4">
+            <h6 >Dont have account?</h6>
+            <a href="/register">Register here</a>
+        </div>
+      </form>
+    </div>
+</div>

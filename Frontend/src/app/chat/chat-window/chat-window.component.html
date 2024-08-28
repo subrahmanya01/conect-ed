@@ -1,0 +1,62 @@
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-3 user-list">
+            <div class="user-pallet mt-2 mb-2" *ngFor="let user of chatUsers">
+                <span (click)="onChatUserSelect(user)">
+                    <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="" class="user-profile-icon">
+                    <span class="user-name">{{user.firstName + " " + user.lastName}}</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="col-9 chats">
+            <ng-container *ngIf="currentlySelectedUser == null; else userSelected">
+               <div class="text-center no-user-selected">
+                <h6>
+                Please select user to view or continue chat.
+                </h6>
+               </div>
+            </ng-container>
+
+           <ng-template #userSelected>
+            <div class="current-user-header">
+                <div class="user-pallet mt-2 mb-2">
+                    <span>
+                        <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt=""
+                            class="user-profile-icon">
+                        <span class="user-name">{{currentlySelectedUser?.firstName + " " + currentlySelectedUser?.lastName}}</span>
+                    </span>
+                </div>
+            </div>
+            <div class="user-chats mt-2" id="scrollContainer">
+                <div class="parent-div" *ngFor="let chat of chatsForCurrentlySelectedUser">
+                    <div class="chat-from" *ngIf="chat.from!=userId">
+                        {{chat.message}}
+                        <div class="time">
+                            {{chat.createdAt | date:'fullDate'}}  {{chat.createdAt | date:'shortTime'}}
+                        </div>
+                    </div>
+
+                    <div class="chat-to" *ngIf="chat.from==userId">
+                        {{chat.message}}
+                        <div class="time">
+                            {{chat.createdAt | date:'fullDate'}} {{chat.createdAt | date:'shortTime'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3 place-message-box">
+                <div class="form-group message-box">
+                    <input type="text" class="form-control" id="message" placeholder="Type message here.." #chatMessage>
+                     <div class="send-icon" (click)="addChat(chatMessage.value)">
+                        <svg xmlns="http://www.w3.org/2000/svg"  width="22" height="22" fill="white" class="bi bi-send" viewBox="0 0 16 16">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                          </svg>
+                     </div>
+                </div>
+              </div>
+           </ng-template>
+        </div>
+    </div>
+</div>

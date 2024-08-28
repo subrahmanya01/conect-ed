@@ -1,0 +1,9 @@
+
+    <div class="mb-3">
+        <label for="tag-input" class="form-label">Enter Tags</label>
+        <input type="text" class="form-control" id="tag-input" #textArea  (input)="onInput(textArea.value)" (keydown.enter)="onEnterClick(textArea.value)">
+    </div>
+    <div class="added-tags mb-4" >
+        <span *ngIf="tagList.length==0" style="color: red; font-size: 0.7rem;">No tags added!! Type and press enter to add the tag.</span>
+        <span class="badge text-bg-secondary" *ngFor="let tag of tagList" style="display: inline-block; margin-left: 10px; cursor: pointer;">{{tag}} <span (click)="removeTag(tag)">x</span></span>
+    </div>

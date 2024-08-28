@@ -1,0 +1,39 @@
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="!isEdit">Ask Question</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="isEdit">Edit Question</h1>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="onButtonClick()"></button>
+        </div>
+        <form [formGroup]="questionForm" (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+        <div class="modal-body">
+            <div class="mb-3">
+              <label for="validationCustom01" class="form-label">Title</label>
+              <input type="text" class="form-control" id="validationCustom01" value="Mark" formControlName="title" >
+              <div class="error" *ngIf="questionForm.get('title')?.errors && questionForm.get('title')?.touched">
+                Please Provide Title
+              </div>          
+              </div>
+              <div class="mb-3">
+                <label for="ask-question" class="form-label" >Description</label>
+                <textarea class="form-control" id="ask-question" rows="3" formControlName="content"></textarea>
+                <div class="error" *ngIf="questionForm.get('content')?.errors && questionForm.get('content')?.touched">
+                  Please Provide Description
+                </div>          
+              </div>
+              <app-tag-input #tagInput></app-tag-input>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onButtonClick()">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="!isEdit">Ask</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="isEdit" >Edit</button>
+        </div>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>

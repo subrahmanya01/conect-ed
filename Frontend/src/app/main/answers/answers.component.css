@@ -1,0 +1,22 @@
+
+.custom-card
+{
+    background-color: black;
+    color: white;
+}
+
+.custom-card-answer
+{
+    background-color: rgb(241, 249, 241);
+}
+
+.delete-btn
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.card-body
+{
+    position: relative;
+}

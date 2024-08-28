@@ -1,0 +1,26 @@
+.profile-card
+{
+    position: relative;
+}
+.place-right
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+
+.custom-card-style
+{
+    height: 4rem;
+    max-height: 4rem;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    overflow: hidden;   /* Hides text that exceeds the container's width */
+    text-overflow: ellipsis;
+}
+
+.place-right-bottom
+{
+    position: absolute;
+    right:0px;
+    bottom: 0px;
+}

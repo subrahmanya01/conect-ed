@@ -1,0 +1,33 @@
+  <!-- Modal -->
+  <div class="modal fade" id="answerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="!isEdit">Add Answer</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel" *ngIf="isEdit">Edit Answer</h1>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form [formGroup]="answerForm" (ngSubmit)="submit()" (keydown.enter)="$event.preventDefault()">
+        <div class="modal-body">
+              <div class="mb-3">
+                <label for="add-answer" class="form-label" >Description</label>
+                <textarea class="form-control" id="add-answer" rows="3" formControlName="content"></textarea>
+                <div class="error" *ngIf="answerForm.get('content')?.errors && answerForm.get('content')?.touched">
+                  Please Provide Description
+                </div>          
+              </div>
+              <app-tag-input #tagInput></app-tag-input>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onClose()">Close</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="!isEdit">Add</button>
+          <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" *ngIf="isEdit">Edit</button>
+
+        </div>
+        </form>
+
+        
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,40 @@
+.main-card
+{
+    border-bottom: 1px solid rgb(190, 190, 243);
+    position: relative;
+}
+.main-card > .card-header > a
+{
+    text-decoration: none;
+    width: 75%;
+    display: inline-block;
+}
+.main-card >.card-desc
+{
+    font-size: 14px;
+    height: 3em;
+    width: 80%;
+    white-space: nowrap; /* Prevents the text from wrapping to the next line */
+    overflow: hidden;   /* Hides text that exceeds the container's width */
+    text-overflow: ellipsis;
+}
+.delete-btn
+{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+/* .main-card >.card-tags
+{
+
+}
+.main-card >.card-user
+{
+
+} */
+
+.flex-x
+{
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,20 @@
+  <!-- Modal -->
+  <div class="modal fade" id="following-follower-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{title}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="empty text-center" *ngIf="userInfo.length ==0">
+            <h6>No {{title}} yet!!</h6>
+        </div>
+        <div class="user-tile p-2" *ngFor="let user of userInfo">
+            <a routerLink="/profile/{{user._id}}" data-bs-dismiss="modal">
+                <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="" style="width: 20px; height: 20px">
+                <span style="display: inline-block; margin-left: 1em;">{{user.firstName + ' ' + user.lastName}}</span>
+            </a> 
+        </div>
+      </div>
+    </div>
+  </div>

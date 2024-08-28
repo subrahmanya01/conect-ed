@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="card mt-4 custom-card">
+        <div class="card-body">
+            <h5>{{question.title}}</h5>
+            {{question.content}}
+            <div class="card-tags mt-2">
+                <span class="badge text-bg-secondary" style="display: inline-block; margin-left: 10px;" *ngFor="let tag of question.tags">{{tag}}</span>
+
+            </div>
+            <div class="card-user" style="height: 23px;">
+                <div style="float: right;"><a routerLink="/profile/{{question.createdBy._id}}" style="font-weight: 600;">{{question.createdBy.firstName + " " + question.createdBy.lastName}}</a> Added on {{question.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mt-4" style="text-align: center;">Answers</h3>
+    <button class="btn btn-secondary" style="margin-right: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#answerModal">Add Answer</button>
+
+    <div class="text-center mt-4" *ngIf="answers.length==0">
+        <h4>No answers yet 🙂.</h4>
+    </div>
+
+    <div class="card mt-4 custom-card-answer" *ngFor="let answer of answers">
+        <div class="card-body">
+            <div class="btn-group delete-btn" role="group" *ngIf="answer.createdBy._id == userService.getUserId()">
+                <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  More
+                </button>
+                <ul class="dropdown-menu">
+                  <li style="padding: 10px 10px; cursor: pointer;" (click)="deleteAnswer(answer._id)">Delete</li>
+                  <li style="padding: 10px 10px; cursor: pointer;" (click)="onEditClick(answer)" data-bs-toggle="modal" data-bs-target="#answerModal">Edit</li>
+                </ul>
+              </div>
+            <p>{{answer.content}}</p>
+            <div class="card-tags mt-2">
+                <span class="badge text-bg-secondary" style="display: inline-block; margin-left: 10px;" *ngFor="let tag of answer.tags">{{tag}}</span>
+            </div>
+            <div class="card-user" style="height: 23px;">
+                <div style="float: right;"><a routerLink="/profile/{{answer.createdBy._id}}" style="font-weight: 600;">{{answer.createdBy.firstName + " " + answer.createdBy.lastName}}</a> Added on {{answer.createdAt | date: 'yyyy-MM-dd HH:mm:ss'}}</div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<app-add-answer [questionId]="questionId" [isEdit]="doEdit" [data]="currentlySelectedQuestionForEdit" (onPopupClose)="onClose()" (onAnswerAdded)="onAnswerAdded($event)"></app-add-answer>

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <img src="assets/linked-in-reva.png" style="width: 35px; height: 35px; display: inline-block; margin-right: 10px;">
+      <a class="navbar-brand ml-4" routerLink="/" style="font-weight: 600;">{{constants.applicationName}}</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/about-us">About us</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+            <button class="btn btn-secondary" style="margin-right: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Ask Questions</button>
+            <div class="header-icon ml-4 mr-4" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+              <span class="unread-not-cnt" *ngIf="notificationComponent.unreadMessageCount!=0">{{notificationComponent.unreadMessageCount}}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+              </svg>
+            </div>
+
+          <div class="header-icon ml-4 mr-4" (click)="navigateToChat()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+              <path d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15"/>
+            </svg>
+          </div>
+
+            <div class="profile-card">
+                <span class="profile-img">{{userService.getUserName().substring(0,2).toUpperCase()}}</span>
+                <div class="btn-group delete-btn" role="group">
+                  <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{userService.getUserName()}}
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li style="padding: 10px 10px; cursor: pointer;" (click)="navigateToProfile()">Profile</li>
+                    <li style="padding: 10px 10px; cursor: pointer;" (click)="logout()">Logout</li>
+                  </ul>
+                </div>
+                <!-- <a routerLink="/profile/{{userService.getUserId()}}" class="profile-text"><span >{{userService.getUserName()}}</span></a> -->
+            </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+<app-notification #notificationComponent></app-notification>
+  

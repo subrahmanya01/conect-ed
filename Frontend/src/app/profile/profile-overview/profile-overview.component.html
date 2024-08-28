@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="card mb-3 mt-4">
+    <div class="row g-0">
+      <div class="col-md-4" style="display: flex; justify-content: center;">
+        <img src="https://cdn-icons-png.freepik.com/512/9203/9203764.png" style="width: 12rem;"
+          class="img-fluid rounded-start" alt="...">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body profile-card">
+          <button class="btn btn-primary place-right" *ngIf="userId != userService.getUserId() && !isFollowing "
+            (click)="follow()">Follow</button>
+          <button class="btn btn-primary place-right" *ngIf="userId != userService.getUserId() && isFollowing"
+            (click)="unfollow()">Unfollow</button>
+          <a routerLink="/chat/{{userId}}" *ngIf="userId != userService.getUserId()">
+            <button class="btn btn-success place-right-bottom">Chat</button>
+          </a>
+          <h5 class="card-title">{{userProfile.firstName + " " + userProfile.lastName}}</h5>
+          <p class="card-text">{{userProfile.email}}</p>
+          <div class="card-tags mt-2 mb-4">
+            <span class="badge text-bg-primary" style="display: inline-block; margin-right: 10px;"
+              *ngFor="let tag of userProfile.tags">{{tag}}</span>
+          </div>
+          <h5><button class="btn btn-success" style="margin-right: 10px;" type="button" data-bs-toggle="modal" data-bs-target="#following-follower-modal" (click)="onFolowingBtnClick()">
+            Following : {{followingList.length}}</button> <button
+              class="btn btn-secondary" type="button" data-bs-toggle="modal" data-bs-target="#following-follower-modal" (click)="onFollowerBtnClick()">Followers: {{followerList.length}}</button></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-0">
+    <div class="col-md-6">
+      <h4 style="text-align: center;">Questions ({{askedQuestions.length}})</h4>
+      <div *ngIf="askedQuestions.length==0" class="mt-4 text-center">
+        No answers yet!!
+      </div>
+      <div class="card mt-4 p-4 custom-card-style" *ngFor="let question of askedQuestions">
+        <a class="remove-link-style" routerLink="/answer/{{question._id}}">{{question.title}}</a>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <h4 style="text-align: center;">Answers ({{addedAnswers.length}})</h4>
+      <div *ngIf="addedAnswers.length==0" class="mt-4 text-center">
+        No answers yet!!
+      </div>
+      <div class="card mt-4 p-4 custom-card-style" *ngFor="let answer of addedAnswers">
+        <a class="remove-link-style" routerLink="/answer/{{answer.questionId}}">{{answer.content}}</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<app-following-follower-modal [title]="modalTitle" [userData]="userListToSend"></app-following-follower-modal>

@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+.error
+{
+    color: red;
+    font-size: 0.7em;
+}
+.remove-link-style
+{
+    text-decoration: none;
+    color: black;
+}
